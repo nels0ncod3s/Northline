@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Northline — Software Consultancy</title>
-<meta name="description" content="Clearline helps growing businesses eliminate operational bottlenecks by understanding their workflows first, then building software around how they already work.">
+<meta name="description" content="Northline helps growing businesses eliminate operational bottlenecks by understanding their workflows first, then building software around how they already work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -129,8 +129,8 @@ h1,h2,h3,h4{
 .h-inverse{ color:var(--text-inverse); }
 
 .display-1{
-  font-size:clamp(2.6rem, 5.2vw, 4.6rem);
-  line-height:1.04;
+  font-size:clamp(2.3rem, 4.4vw, 3.8rem);
+  line-height:1.06;
   font-weight:450;
   letter-spacing:-0.02em;
 }
@@ -375,7 +375,11 @@ section{ position:relative; }
    ============================================ */
 .hero{
   position:relative;
-  padding:196px 0 120px;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  padding:96px 0 40px;
   overflow:hidden;
 }
 .hero-bg{
@@ -422,6 +426,7 @@ section{ position:relative; }
 .hero-grid{
   position:relative;
   z-index:1;
+  width:100%;
   display:grid;
   grid-template-columns:1fr 0.92fr;
   gap:64px;
@@ -431,7 +436,7 @@ section{ position:relative; }
 .hero-left{ max-width:560px; }
 .hero-eyebrow{ opacity:0; animation:rise 700ms var(--ease) forwards; }
 .hero-headline{
-  margin-top:22px;
+  margin-top:16px;
   opacity:0;
   animation:rise 800ms var(--ease) 120ms forwards;
 }
@@ -441,12 +446,12 @@ section{ position:relative; }
   font-weight:400;
 }
 .hero-lede{
-  margin-top:24px;
+  margin-top:18px;
   opacity:0;
   animation:rise 800ms var(--ease) 240ms forwards;
 }
 .hero-ctas{
-  margin-top:38px;
+  margin-top:26px;
   display:flex;
   align-items:center;
   gap:16px;
@@ -455,7 +460,7 @@ section{ position:relative; }
   animation:rise 800ms var(--ease) 360ms forwards;
 }
 .hero-metrics{
-  margin-top:56px;
+  margin-top:32px;
   display:flex;
   gap:40px;
   flex-wrap:wrap;
@@ -483,7 +488,7 @@ section{ position:relative; }
 .hero-right{
   position:relative;
   opacity:0;
-  animation:rise 900ms var(--ease) 260ms forwards, float-card 7s ease-in-out 1.2s infinite;
+  animation:rise 900ms var(--ease) 260ms forwards;
 }
 @keyframes float-card{
   0%,100%{ transform:translateY(0); }
@@ -495,13 +500,13 @@ section{ position:relative; }
   border:1px solid var(--border);
   border-radius:var(--radius-lg);
   box-shadow:var(--shadow-lg);
-  padding:28px 26px 32px;
+  padding:22px 24px 26px;
 }
 .workflow-card-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:22px;
+  margin-bottom:14px;
 }
 .workflow-card-title{
   font-family:var(--font-mono);
@@ -513,7 +518,7 @@ section{ position:relative; }
 .workflow-dots{ display:flex; gap:6px; }
 .workflow-dots span{ width:7px; height:7px; border-radius:50%; background:var(--border); }
 
-.workflow-path-wrap{ position:relative; padding:6px 2px 20px; }
+.workflow-path-wrap{ position:relative; padding:2px 2px 12px; }
 .workflow-path-wrap svg{ width:100%; height:auto; overflow:visible; }
 .wf-line{
   fill:none;
@@ -541,14 +546,14 @@ section{ position:relative; }
 .workflow-stack{
   display:flex;
   flex-direction:column;
-  gap:10px;
-  margin-top:8px;
+  gap:8px;
+  margin-top:4px;
 }
 .wf-row{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:12px 14px;
+  padding:10px 14px;
   border:1px solid var(--border);
   border-radius:var(--radius-sm);
   background:var(--bg);
@@ -587,16 +592,16 @@ section{ position:relative; }
 
 .kpi-float{
   position:absolute;
-  right:-18px;
-  bottom:-22px;
+  right:-16px;
+  top:-18px;
   background:var(--bg-dark);
   color:var(--text-inverse);
   border-radius:var(--radius-md);
-  padding:16px 20px;
+  padding:14px 18px;
   box-shadow:var(--shadow-lg);
-  min-width:150px;
+  min-width:140px;
   opacity:0;
-  animation:card-in 700ms var(--ease) 2s forwards, float-card 6s ease-in-out 2.7s infinite;
+  animation:card-in 700ms var(--ease) 1.8s forwards;
 }
 .kpi-float .mono-label{ color:rgba(244,242,234,0.5); }
 .kpi-num{
@@ -607,8 +612,8 @@ section{ position:relative; }
 }
 
 @media (max-width: 980px){
-  .hero{ padding:150px 0 80px; }
-  .hero-grid{ grid-template-columns:1fr; gap:56px; }
+  .hero{ min-height:auto; padding:120px 0 64px; }
+  .hero-grid{ grid-template-columns:1fr; gap:48px; }
   .hero-right{ max-width:440px; }
   .kpi-float{ right:8px; }
 }
@@ -1262,7 +1267,7 @@ section{ position:relative; }
         <circle cx="21" cy="6" r="2.4" fill="#1B4332"/>
         <path d="M6.5 18.5C10 12 14 12 19.5 7.5" stroke="#111827" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
-      Clearline
+      Northline
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#process" class="nav-link">Process</a>
@@ -1552,7 +1557,7 @@ section{ position:relative; }
 <section class="bento-section" id="why">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Why Clearline</span>
+      <span class="eyebrow">Why Northline</span>
       <h2 class="display-2">Consultants first. Engineers second.</h2>
       <p class="lede">Most agencies start with a tech stack. We start with a whiteboard and a list of questions.</p>
     </div>
@@ -1737,7 +1742,7 @@ section{ position:relative; }
         </div>
         <div class="t-slide">
           <div class="t-card">
-            <p class="t-quote">"We'd tried two other agencies before Clearline. Both wanted to start with wireframes. Clearline wanted to start with our spreadsheets."</p>
+            <p class="t-quote">"We'd tried two other agencies before Northline. Both wanted to start with wireframes. Northline wanted to start with our spreadsheets."</p>
             <div class="t-person">
               <div class="t-avatar" style="background:#1B4332;">NP</div>
               <div>
@@ -1796,7 +1801,7 @@ section{ position:relative; }
           <circle cx="21" cy="6" r="2.4" fill="#E3B871"/>
           <path d="M6.5 18.5C10 12 14 12 19.5 7.5" stroke="#F4F2EA" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
-        Clearline
+        Northline
       </a>
       <p>A software consultancy for growing businesses. We understand the workflow, then build the software.</p>
     </div>
@@ -1829,7 +1834,7 @@ section{ position:relative; }
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© 2026 Clearline Software Consultancy. All rights reserved.</span>
+    <span>© 2026 Northline Software Consultancy. All rights reserved.</span>
     <div class="footer-bottom-links">
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
@@ -2077,7 +2082,7 @@ section{ position:relative; }
   if(ctaButton){
     ctaButton.addEventListener('click', function(e){
       e.preventDefault();
-      window.location.href = 'mailto:hello@clearline.co?subject=Discovery%20Session%20Request';
+      window.location.href = 'mailto:hello@northline.co?subject=Discovery%20Session%20Request';
     });
   }
 

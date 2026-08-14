@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Firstlayer — Auth Test</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --panel: #131316;
+    --border: #232327;
+    --border-hover: #333338;
+    --text: #f4f4f5;
+    --text-dim: #a1a1aa;
+    --text-faint: #6b6b71;
+    --accent: #8b5cf6;
+    --accent-hover: #7c4ded;
+    --danger: #f87171;
+    --danger-bg: rgba(248, 113, 113, 0.08);
+    --success: #34d399;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.06), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.04), transparent 40%);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 24px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), #5b21b6);
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--text-dim);
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin: 0 0 24px;
+  }
+
+  .field {
+    margin-bottom: 14px;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  input {
+    width: 100%;
+    background: #0e0e11;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 11px 12px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.15s ease;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  input::placeholder {
+    color: var(--text-faint);
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    margin-top: 6px;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    margin-top: 10px;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--border-hover);
+    color: var(--text);
+  }
+
+  .switch-row {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .switch-row button {
+    all: unset;
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .switch-row button:hover { color: var(--accent-hover); }
+
+  .error {
+    display: none;
+    background: var(--danger-bg);
+    border: 1px solid rgba(248, 113, 113, 0.25);
+    color: var(--danger);
+    font-size: 13px;
+    border-radius: 9px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+  }
+
+  .error.visible { display: block; }
+
+  /* Dashboard (post-auth) view */
+  .dashboard { display: none; text-align: center; }
+  .dashboard.visible { display: block; }
+  .auth-forms.hidden { display: none; }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #5b21b6);
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .welcome-title {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+
+  .welcome-email {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 0 0 4px;
+    word-break: break-all;
+  }
+
+  .welcome-meta {
+    font-size: 12px;
+    color: var(--text-faint);
+    margin: 0 0 26px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--success);
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    padding: 5px 10px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+  }
+
+  .loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--text-faint);
+    z-index: 10;
+  }
+
+  .config-warning {
+    max-width: 380px;
+    background: var(--danger-bg);
+    border: 1px solid rgba(248, 113, 113, 0.25);
+    color: var(--danger);
+    font-size: 13px;
+    border-radius: 9px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .config-warning code {
+    background: rgba(0,0,0,0.3);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div id="loading" class="loading-overlay">Checking session…</div>
+
+<div style="display:flex; flex-direction:column; align-items:center;">
+  <div id="config-warning" class="config-warning" style="display:none;">
+    ⚠️ You haven't set <code>API_KEY</code> in the script yet — open this file and paste in a real project API key from your Firstlayer dashboard.
+  </div>
+
+  <div class="card">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Firstlayer</div>
+    </div>
+
+    <!-- Auth forms (signup / login) -->
+    <div id="auth-forms" class="auth-forms">
+      <h1 id="form-title">Create your account</h1>
+      <p class="subtitle" id="form-subtitle">Sign up to get started.</p>
+
+      <div id="error-box" class="error"></div>
+
+      <form id="auth-form">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password" minlength="8" />
+        </div>
+        <button type="submit" id="submit-btn" class="btn-primary">Create account</button>
+      </form>
+
+      <div class="switch-row">
+        <span id="switch-label">Already have an account?</span>
+        <button type="button" id="switch-btn">Log in</button>
+      </div>
+    </div>
+
+    <!-- Dashboard (shown after login/signup) -->
+    <div id="dashboard" class="dashboard">
+      <div class="status-badge"><span class="status-dot"></span> Authenticated</div>
+      <div class="avatar" id="avatar-initial">?</div>
+      <h2 class="welcome-title">Welcome back</h2>
+      <p class="welcome-email" id="welcome-email"></p>
+      <p class="welcome-meta" id="welcome-id"></p>
+      <button id="logout-btn" class="btn-ghost">Log out</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { createClient } from "https://esm.sh/@firstlayer/sdk";
+
+  // ── Paste your real project API key here ──────────────────────────
+  const API_KEY = "fl_live_df4ca6aa98949f8bbbd19a2c7c4a5a901a214d692eb83ef7";
+  // ────────────────────────────────────────────────────────────────
+
+  const client = createClient({ apiKey: API_KEY });
+
+  // Elements
+  const loadingEl = document.getElementById("loading");
+  const configWarning = document.getElementById("config-warning");
+  const authForms = document.getElementById("auth-forms");
+  const dashboard = document.getElementById("dashboard");
+  const form = document.getElementById("auth-form");
+  const errorBox = document.getElementById("error-box");
+  const submitBtn = document.getElementById("submit-btn");
+  const formTitle = document.getElementById("form-title");
+  const formSubtitle = document.getElementById("form-subtitle");
+  const switchLabel = document.getElementById("switch-label");
+  const switchBtn = document.getElementById("switch-btn");
+  const logoutBtn = document.getElementById("logout-btn");
+  const welcomeEmail = document.getElementById("welcome-email");
+  const welcomeId = document.getElementById("welcome-id");
+  const avatarInitial = document.getElementById("avatar-initial");
+
+  let mode = "signup"; // or "login"
+
+  if (API_KEY === "fl_live_df4ca6aa98949f8bbbd19a2c7c4a5a901a214d692eb83ef7") {
+    configWarning.style.display = "block";
+  }
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.classList.add("visible");
+  }
+
+  function clearError() {
+    errorBox.classList.remove("visible");
+    errorBox.textContent = "";
+  }
+
+  function setMode(nextMode) {
+    mode = nextMode;
+    clearError();
+    form.reset();
+
+    if (mode === "signup") {
+      formTitle.textContent = "Create your account";
+      formSubtitle.textContent = "Sign up to get started.";
+      submitBtn.textContent = "Create account";
+      switchLabel.textContent = "Already have an account?";
+      switchBtn.textContent = "Log in";
+    } else {
+      formTitle.textContent = "Welcome back";
+      formSubtitle.textContent = "Log in to your account.";
+      submitBtn.textContent = "Log in";
+      switchLabel.textContent = "Don't have an account?";
+      switchBtn.textContent = "Sign up";
+    }
+  }
+
+  switchBtn.addEventListener("click", () => {
+    setMode(mode === "signup" ? "login" : "signup");
+  });
+
+  function showDashboard(user) {
+    authForms.classList.add("hidden");
+    dashboard.classList.add("visible");
+    welcomeEmail.textContent = user.email;
+    welcomeId.textContent = `user_id: ${user.id}`;
+    avatarInitial.textContent = (user.email?.[0] || "?").toUpperCase();
+  }
+
+  function showAuthForms() {
+    dashboard.classList.remove("visible");
+    authForms.classList.remove("hidden");
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearError();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = mode === "signup" ? "Creating account…" : "Logging in…";
+
+    try {
+      if (mode === "signup") {
+        // Sign up, then log in immediately — signup alone doesn't
+        // establish a session, login is what issues the token.
+        await client.auth.signUp(email, password);
+        const { token, user } = await client.auth.login(email, password);
+        localStorage.setItem("fl_session_token", token);
+        showDashboard(user);
+      } else {
+        const { token, user } = await client.auth.login(email, password);
+        localStorage.setItem("fl_session_token", token);
+        showDashboard(user);
+      }
+    } catch (err) {
+      showError(err.message || "Something went wrong.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = mode === "signup" ? "Create account" : "Log in";
+    }
+  });
+
+  logoutBtn.addEventListener("click", async () => {
+    logoutBtn.disabled = true;
+    logoutBtn.textContent = "Logging out…";
+    try {
+      await client.auth.logout();
+    } catch (err) {
+      // Even if the server call fails, clear the local session so the
+      // user isn't stuck looking logged-in on a dead token.
+      console.warn("Logout request failed:", err.message);
+    }
+    localStorage.removeItem("fl_session_token");
+    logoutBtn.disabled = false;
+    logoutBtn.textContent = "Log out";
+    setMode("login");
+    showAuthForms();
+  });
+
+  // On page load: if a session token is saved, restore it and check
+  // it's still valid via /v1/me before deciding which view to show.
+  // This is what makes refresh not kick you back to the login form.
+  async function restoreSession() {
+    const savedToken = localStorage.getItem("fl_session_token");
+
+    if (savedToken) {
+      client.auth.setSessionToken(savedToken);
+      try {
+        const { user } = await client.auth.me();
+        showDashboard(user);
+        loadingEl.style.display = "none";
+        return;
+      } catch (err) {
+        // Token expired, was revoked, or is otherwise invalid.
+        localStorage.removeItem("fl_session_token");
+      }
+    }
+
+    setMode("signup");
+    showAuthForms();
+    loadingEl.style.display = "none";
+  }
+
+  restoreSession();
+</script>
+
+</body>
+</html>
