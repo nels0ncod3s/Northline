@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0b0d10" />
-  <title>Northline — Digital Product & Automation Agency</title>
-  <meta name="description" content="Northline is a digital agency that helps ambitious businesses design, build, automate and improve the digital systems they depend on." />
+  <title>Afárá — Digital Design, Products & Automation</title>
+  <meta name="description" content="Afárá is a digital agency connecting strategy, design, technology and automation to help ambitious businesses move from idea to useful digital systems." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b0d10'/%3E%3Cpath d='M17 45V19h6l18 19V19h6v26h-6L23 26v19z' fill='%23b8ff4a'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23151210'/%3E%3Cpath d='M14 43C21 22 43 22 50 43' fill='none' stroke='%23E76F51' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M22 43V34M42 43V34' stroke='%23F6F0E6' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
   <style>
     :root{
       --ink:#0b0d10;
@@ -1499,6 +1499,249 @@
       }
     }
 
+
+    /* ============================================
+       AFÁRÁ — BRAND SYSTEM
+       Warm, grounded and built around connection.
+       ============================================ */
+    :root{
+      --ink:#151210;
+      --ink-2:#201B18;
+      --paper:#F6F0E6;
+      --paper-2:#EDE3D5;
+      --white:#FFFCF7;
+      --muted:#746B63;
+      --line:rgba(21,18,16,.15);
+      --line-dark:rgba(255,252,247,.14);
+      --acid:#E76F51;
+      --blue:#2F5D50;
+      --terracotta:#E76F51;
+      --terracotta-soft:#F3B39F;
+      --forest:#2F5D50;
+      --sand:#D9BE96;
+      --sun:#F0C66A;
+    }
+
+    body{
+      background:var(--paper);
+      color:var(--ink);
+      font-family:"DM Sans",Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    .brand{
+      font-family:Manrope,"DM Sans",sans-serif;
+      letter-spacing:-.045em;
+    }
+
+    .brand-mark{
+      position:relative;
+      overflow:hidden;
+      background:var(--terracotta);
+      color:transparent;
+      font-size:0;
+    }
+
+    .brand-mark::before{
+      content:"";
+      position:absolute;
+      width:19px;
+      height:12px;
+      left:50%;
+      top:52%;
+      transform:translate(-50%,-50%);
+      border:2px solid var(--ink);
+      border-bottom:0;
+      border-radius:18px 18px 0 0;
+    }
+
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      width:2px;
+      height:9px;
+      left:50%;
+      top:56%;
+      transform:translateX(-50%);
+      background:var(--ink);
+      box-shadow:-8px 0 0 var(--ink),8px 0 0 var(--ink);
+    }
+
+    .nav{
+      border-color:rgba(255,252,247,.12);
+      background:rgba(21,18,16,.86);
+    }
+
+    .nav.is-scrolled{
+      background:rgba(21,18,16,.96);
+    }
+
+    .nav-cta{
+      background:var(--paper);
+      color:var(--ink);
+    }
+
+    .nav-cta:hover{
+      background:var(--terracotta);
+    }
+
+    .hero{
+      background:
+        radial-gradient(circle at 82% 22%,rgba(231,111,81,.18),transparent 30%),
+        linear-gradient(145deg,#151210 0%,#1E1815 56%,#13241F 100%);
+    }
+
+    .hero-grid-bg{
+      background-image:
+        linear-gradient(rgba(255,252,247,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,252,247,.035) 1px,transparent 1px);
+    }
+
+    .hero-glow{
+      width:720px;
+      height:720px;
+      background:radial-gradient(circle,rgba(231,111,81,.21),rgba(231,111,81,0) 68%);
+    }
+
+    .status-dot{
+      background:var(--terracotta);
+      box-shadow:0 0 0 6px rgba(231,111,81,.12);
+    }
+
+    .hero h1{
+      max-width:8.4ch;
+    }
+
+    .hero h1 .accent{
+      color:var(--terracotta-soft);
+    }
+
+    .hero h1 .accent::after{
+      border-color:rgba(243,179,159,.72);
+    }
+
+    .hero-action .circle,
+    .cta-link{
+      background:var(--terracotta);
+    }
+
+    .ticker{
+      background:var(--terracotta);
+    }
+
+    .ticker-row span::after{
+      content:"⌁";
+    }
+
+    .intro-copy .soft{
+      color:#A59689;
+    }
+
+    .services{
+      background:var(--forest);
+    }
+
+    .service-row:hover .service-arrow{
+      background:var(--sand);
+      color:var(--ink);
+    }
+
+    .visual.route{
+      background:
+        radial-gradient(circle at 68% 36%,rgba(240,198,106,.86) 0 8%,transparent 8.4%),
+        linear-gradient(140deg,var(--terracotta) 0 34%,#1D2B26 34% 100%);
+    }
+
+    .visual.route::after{
+      content:"IDEA  →  SYSTEM";
+      font-family:"DM Mono",monospace;
+    }
+
+    .visual.ops{
+      background:
+        linear-gradient(160deg,#EFE6D8 0 48%,var(--sand) 48% 74%,var(--forest) 74% 100%);
+    }
+
+    .visual.launch{
+      background:
+        radial-gradient(circle at 50% 42%,rgba(231,111,81,.95) 0 17%,rgba(231,111,81,.18) 18% 32%,transparent 33%),
+        #151210;
+    }
+
+    .process{
+      background:#EDE3D5;
+    }
+
+    .principle:hover{
+      background:#F3EBDD;
+    }
+
+    .faq{
+      background:var(--paper);
+    }
+
+    .faq-item.open .faq-plus{
+      background:var(--terracotta);
+      color:var(--ink);
+    }
+
+    .cta{
+      background:var(--sand);
+    }
+
+    .cta-card{
+      background:
+        radial-gradient(circle at 88% 12%,rgba(231,111,81,.16),transparent 31%),
+        var(--ink);
+    }
+
+    .cta-card::after{
+      border-color:rgba(231,111,81,.38);
+      box-shadow:
+        0 0 0 70px rgba(231,111,81,.035),
+        0 0 0 140px rgba(231,111,81,.02);
+    }
+
+    footer{
+      background:var(--ink);
+    }
+
+    ::selection{
+      background:var(--terracotta);
+      color:var(--ink);
+    }
+
+    @media (max-width:680px){
+      .mobile-panel{
+        background:
+          radial-gradient(circle at 100% 0%,rgba(231,111,81,.19),transparent 34%),
+          var(--ink);
+      }
+
+      .mobile-links a:last-child{
+        background:var(--terracotta);
+      }
+
+      .hero{
+        background:
+          radial-gradient(circle at 88% 18%,rgba(231,111,81,.2),transparent 31%),
+          linear-gradient(155deg,#151210 0%,#1D1714 56%,#14241F 100%);
+      }
+
+      .hero h1{
+        max-width:5.5ch;
+      }
+
+      .status-dot{
+        box-shadow:0 0 0 5px rgba(231,111,81,.10);
+      }
+
+      .cta-card::after{
+        box-shadow:
+          0 0 0 42px rgba(231,111,81,.035),
+          0 0 0 84px rgba(231,111,81,.02);
+      }
+    }
+
     @media (prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
       *,*::before,*::after{animation:none!important;transition:none!important}
@@ -1509,9 +1752,9 @@
 <body>
   <div class="nav-wrap">
     <nav class="nav" id="nav" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Northline home">
-        <span class="brand-mark">N</span>
-        <span>Northline</span>
+      <a class="brand" href="#top" aria-label="Afárá home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Afárá</span>
       </a>
       <div class="nav-links">
         <a href="#services">Services</a>
@@ -1519,7 +1762,7 @@
         <a href="#process">Process</a>
         <a href="#about">About</a>
       </div>
-      <a class="nav-cta" href="mailto:hello@northline.co?subject=Project%20enquiry">
+      <a class="nav-cta" href="#contact">
         Start a project <span>↗</span>
       </a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -1534,9 +1777,9 @@
       <a href="#work">Work</a>
       <a href="#process">Process</a>
       <a href="#about">About</a>
-      <a href="mailto:hello@northline.co?subject=Project%20enquiry">Start a project ↗</a>
+      <a href="#contact">Start a project ↗</a>
     </div>
-    <div class="mobile-foot">Northline / Digital products, websites & automation.</div>
+    <div class="mobile-foot">Afárá / Digital products, websites & automation.</div>
   </div>
 
   <main id="top">
@@ -1546,16 +1789,16 @@
       <div class="shell hero-inner">
         <div class="hero-top">
           <div class="status"><span class="status-dot"></span> Independent digital agency</div>
-          <div class="hero-note">Strategy, design and engineering for teams that need sharper digital systems, not more slide decks.</div>
+          <div class="hero-note">Strategy, design and engineering connected into one clear path from idea to useful digital systems.</div>
         </div>
 
         <div class="hero-copy reveal">
-          <h1>We build what <span class="accent">works.</span></h1>
+          <h1>We bridge ideas to <span class="accent">impact.</span></h1>
         </div>
 
         <div class="hero-bottom">
           <p class="hero-description">
-            Northline helps ambitious businesses turn messy ideas and inefficient processes into clear, useful digital products.
+            Afárá connects strategy, design and technology to turn ambitious ideas into useful digital products and systems.
           </p>
           <div class="hero-services" aria-label="Services">
             <span class="service-pill">Websites</span>
@@ -1585,10 +1828,10 @@
     <section class="intro" id="about">
       <div class="shell">
         <div class="intro-grid">
-          <div class="section-label reveal">The agency</div>
+          <div class="section-label reveal">What Afárá is</div>
           <div>
             <p class="intro-copy reveal">
-              Northline sits between a design studio and a software team. <span class="soft">We make the useful thing, then make it feel inevitable.</span>
+              Afárá is the bridge between ambitious ideas and working digital systems. <span class="soft">Strategy, design and engineering move together here.</span>
             </p>
             <div class="intro-foot">
               <div class="mini-card reveal">
@@ -1614,9 +1857,9 @@
         <div class="services-head">
           <div>
             <div class="section-label reveal">What we do</div>
-            <h2 class="display section-title reveal" style="margin-top:18px">From first sketch to live system.</h2>
+            <h2 class="display section-title reveal" style="margin-top:18px">One partner, across the whole build.</h2>
           </div>
-          <p class="lede reveal">Northline is built for teams that need one sharp partner across strategy, design and development.</p>
+          <p class="lede reveal">Afárá is built for teams that want strategy, design, development and automation moving in the same direction.</p>
         </div>
 
         <div class="services-list">
@@ -1655,7 +1898,7 @@
             <div class="section-label reveal">Selected directions</div>
             <h2 class="display section-title reveal" style="margin-top:18px">The kind of problems we like.</h2>
           </div>
-          <p class="lede reveal">Not fake “300% growth” case studies invented by a copywriter at 2 a.m. These are the kinds of engagements Northline is designed to handle.</p>
+          <p class="lede reveal">Not fake “300% growth” case studies invented by a copywriter at 2 a.m. These are the kinds of engagements Afárá is designed to handle.</p>
         </div>
 
         <div class="work-grid">
@@ -1701,8 +1944,8 @@
       <div class="shell process-grid">
         <div class="process-sticky">
           <div class="section-label reveal">How we work</div>
-          <h2 class="display section-title reveal" style="margin-top:18px">Less ceremony. More useful progress.</h2>
-          <p class="lede reveal">The process flexes around the job, but the logic stays simple: understand, decide, build, improve.</p>
+          <h2 class="display section-title reveal" style="margin-top:18px">A clear path from problem to product.</h2>
+          <p class="lede reveal">The work changes. The path stays clear: understand the problem, choose the leverage, build carefully, then improve with reality.</p>
         </div>
 
         <div class="steps">
@@ -1790,7 +2033,7 @@
         <div class="faq-list">
           <article class="faq-item reveal">
             <button class="faq-q" aria-expanded="false">
-              What kind of clients does Northline work with?
+              What kind of clients does Afárá work with?
               <span class="faq-plus">+</span>
             </button>
             <div class="faq-a"><div><p>Growing businesses, founders and teams that need a serious digital partner for a website, product, internal tool or automation project. The best fit is usually a problem with clear business value and enough room to improve how something currently works.</p></div></div>
@@ -1807,7 +2050,7 @@
               Do you handle development too?
               <span class="faq-plus">+</span>
             </button>
-            <div class="faq-a"><div><p>Yes. Northline is intentionally design-and-build. We can take work from strategy and interface through frontend, backend integration, deployment and post-launch improvements.</p></div></div>
+            <div class="faq-a"><div><p>Yes. Afárá is intentionally design-and-build. We can take work from strategy and interface through frontend, backend integration, deployment and post-launch improvements.</p></div></div>
           </article>
           <article class="faq-item reveal">
             <button class="faq-q" aria-expanded="false">
@@ -1825,15 +2068,15 @@
         <div class="cta-card reveal">
           <div class="cta-grid" aria-hidden="true"></div>
           <div class="cta-top">
-            <span>Have a problem worth fixing?</span>
-            <span>hello@northline.co</span>
+            <span>Have something worth building?</span>
+            <span></span>
           </div>
           <div class="cta-bottom">
             <div>
-              <h2>Build the better version.</h2>
-              <p style="margin-top:26px">Tell us what is slow, confusing, manual or underperforming. We will figure out whether design, software or automation is the right lever.</p>
+              <h2>Cross from idea to real.</h2>
+              <p style="margin-top:26px">Bring the idea, bottleneck or messy process. Afárá connects the right mix of design, software and automation to move it forward.</p>
             </div>
-            <a class="cta-link" href="mailto:hello@northline.co?subject=Project%20enquiry" aria-label="Email Northline">↗</a>
+            <a class="cta-link" href="#contact" aria-label="Start a project with Afárá">↗</a>
           </div>
         </div>
       </div>
@@ -1845,10 +2088,10 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="#top">
-            <span class="brand-mark">N</span>
-            <span>Northline</span>
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span>Afárá</span>
           </a>
-          <p>A digital product and automation agency for ambitious businesses that want sharper systems and better customer experiences.</p>
+          <p>A digital agency connecting strategy, design, engineering and automation for ambitious businesses.</p>
         </div>
         <div class="footer-col">
           <h4>Explore</h4>
@@ -1870,7 +2113,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year"></span> Northline. Built with intent.</span>
+        <span>© <span id="year"></span> Afárá. Built to connect.</span>
         <span>Digital products / websites / automation</span>
       </div>
     </div>
